@@ -3,10 +3,26 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="text-left" scope="col">Ville</th>
-                <th class="text-left" scope="col">Pays</th>
-                <th class="text-left" scope="col">Note</th>
-                <th class="text-left" scope="col">Date</th>
+                <th class="text-left" scope="col">
+                    Ville
+                    <a href="{{ path('voyages.sort', {champs: 'ville', ordre: 'ASC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a>
+                    <a href="{{ path('voyages.sort', {champs: 'ville', ordre: 'DESC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">></a>
+                </th>
+                <th class="text-left" scope="col">
+                    Pays
+                    <a href="{{ path('voyages.sort', {champs: 'pays', ordre: 'ASC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a>
+                    <a href="{{ path('voyages.sort', {champs: 'pays', ordre: 'DESC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">></a>
+                </th>
+                <th class="text-left" scope="col">
+                    Note
+                    <a href="{{ path('voyages.sort', {champs: 'note', ordre: 'ASC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a>
+                    <a href="{{ path('voyages.sort', {champs: 'note', ordre: 'DESC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">></a>
+                </th>
+                <th class="text-left" scope="col">
+                    Date
+                    <a href="{{ path('voyages.sort', {champs: 'datecreation', ordre: 'ASC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true"><</a>
+                    <a href="{{ path('voyages.sort', {champs: 'datecreation', ordre: 'DESC'}) }}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">></a>
+                </th>
             </tr>
         </thead>
         <tbody>
