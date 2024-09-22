@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Repository\VisiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,9 +33,17 @@ class VoyagesController extends AbstractController{
     public function __construct(VisiteRepository $repository) {
         $this->repository = $repository;
     }
+    
     #[Route('/voyages/tri/{champs}/{ordre}', name: 'voyages.sort')]
     public function sort($champs, $ordre): Response{
         $visites = $this->repository->findAllOrderBy($champs, $ordre);
+        return $this->render("pages/voyages.html.twig", ['visites' => $visites]);
+    }
+    
+    #[Route('/voyages/recherche/{champs}', name: 'voyages.findallequal')]
+    public function findAllEqual($champs, Request $request):Response{
+        $valeur = $request->get("recherche");
+        $visites = $this->repository->findByEqualValue($champs, $valeur);
         return $this->render("pages/voyages.html.twig", ['visites' => $visites]);
     }
 
