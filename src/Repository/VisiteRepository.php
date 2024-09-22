@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Visite>
+ * 
  */
 class VisiteRepository extends ServiceEntityRepository
 {
