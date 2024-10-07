@@ -9,7 +9,7 @@
             {% if visite.note >=10 %}
                 <h2 class="text-success mt-5">{{ visite.note }}/20</h2>
             {% else %}
-                <h2 class="text-danger mt-5">{{ visite.note }}</h2>
+                <h2 class="text-danger mt-5">{{ visite.note }}/20</h2>
             {% endif %}
             <h5 class="mt-5">t° entre {{ visite.tempmin }}° et {{ visite.tempmax }}°</h5>
             <p class='mt-5'><strong>Environnements:</strong></p>

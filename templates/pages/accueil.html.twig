@@ -1,4 +1,57 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
-<h1>Page d'accueil</h1>
+<h1>Bienvenue sur mon site personnel de présentation de mes voyages</h1>
+<p>
+    Dans la partie
+    <a href="{{ path('voyages') }}">Voyages</a>
+    , vous pouvez voir la liste des visites que j'ai faites dans les différentes villes.<br/>
+    A chaque fois j'ai précisé la ville visitée, le pays, j'ai mis une note (entre 0 et 20) et la date de la visite.<br/>
+    Vous pouvez trier la liste en fonction des villes, des pays, des notes et de dates dans l'ordre croissant mais aussi décroissant.<br/>
+    Vous pouvez aussi filtrer les visites par rapport à une ville ou un pays.<br/>
+    En cliquant sur la ville de la visite, vous pourrez avoir plus d'informations dessus: températures max et min, une description détaillée, les environnements et une photo.<br/>
+    Enfin, vous pouvez me contacter avec le formulaire de
+    <a href="{{ path('contact') }}">Contact</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        Voici mes 2 derniers voyages:
+    </thead>
+    <tbody>
+        <tr>
+        {% for visite in visites %}
+            <td style="vertical-align: text-top; width: 50%">
+        <div class="row">
+            <div class="col">
+                
+                image actuelle
+                {% if visite.imagename %}
+                    <img src="{{ app.request.getBasePath()~vich_uploader_asset(visite,'imageFile') }}" class="card-img-top" style="width:100%;height:auto;">
+                {% else %}
+                    <p>(aucune image)</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                
+                <h5>{{ visite.datecreationstring }} </h5>
+                <h1 class="text-primary mt-5">
+                    <a href="{{ path('voyages.showone', {id:visite.id}) }}">{{ visite.ville }}</a>
+                </h1>
+                
+                <h5>{{ visite.pays }} </h5>
+                {% if visite.note >=10 %}
+                    <h5 class="text-success mt-5">{{ visite.note }}/20</h5>
+                {% else %}
+                    <h5 class="text-danger mt-5">{{ visite.note }}/20</h5>
+                {% endif %}
+                <h5 class="mt-5">t° entre {{ visite.tempmin }}° et {{ visite.tempmax }}°</h5>
+                <h5><strong>Environnements:</strong> </h5>
+                {% for environnement in visite.environnements %} 
+                {{ environnement.nom }}
+            {% endfor %}
+            </div>
+        </div>
+            </td>
+        {% endfor %}
+        </tr>
+    </tbody>
 {% endblock %}
