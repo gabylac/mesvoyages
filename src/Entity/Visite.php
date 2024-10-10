@@ -30,6 +30,7 @@ class Visite
     private ?string $pays = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\LessThanOrEqual('now')]
     private ?DateTimeInterface $datecreation = null;
 
     #[ORM\Column(nullable: true)]
@@ -39,11 +40,11 @@ class Visite
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $avis = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true)]    
     private ?int $tempmin = null;
 
     #[ORM\Column(nullable: true)]
-    #[Assert\GreaterThan("tempmin")]
+    #[Assert\GreaterThan(propertyPath:"tempmin")]
     private ?int $tempmax = null;
     
     #[Vich\UploadableField(mapping: 'visites', fileNameProperty: 'imageName', size: 'imageSize')]
